@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using UnityEngine;
 
 public class Collision : MonoBehaviour {
@@ -10,4 +10,4 @@ public class Collision : MonoBehaviour {
             Destroy(col.gameObject);
         }
     }
-}
+}*/

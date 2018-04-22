@@ -2,19 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class score : MonoBehaviour
 {
 
-    public float speed;
+    //public float speed;
+    //public int count;
     public Text countText;
     public Text winText;
 
-    private Rigidbody rb;
+    //private Rigidbody rb;
     private int count;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
@@ -22,64 +22,30 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Pick Up"))
+        if (other.gameObject.name == "Bullet(Clone)")
         {
-            other.gameObject.SetActive(false);
+            //float translation = Time.deltaTime * 1000;
+            Destroy(other.gameObject);
+            //scoreVal++;
+            //GetComponent<score>().addToScore = scoreVal;
+            //print("current score value: " + scoreVal);
             count = count + 1;
             SetCountText();
+            print("hello");   
         }
     }
 
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 12)
+        if (count >= 2)
         {
             winText.text = "You Win!";
+            print("wins");
         }
     }
 }
 
-
-/*using UnityEngine;
-using UnityEngine.UI;
-
-public class score : MonoBehaviour
-{
-
-    //public int scoreVal = instance.getScoreVal;
-    private static string scoreTag = "score";
-    public int currentScore = 0;
-    public GameObject txt;
-    private static object other;
-    public int final;
-
-    //int a = PlayerPrefs.GetInt("highscore");
-
-    void start()
-    {
-        currentScore = 0;
-        txt.GetComponent<UnityEngine.UI.Text>().text = currentScore.ToString();
-    }
-    
-    private void Update()
-    {
-        print("final" +currentScore);
-    }
-    /*
-    public void addToScore(int scores)
-    {
-        currentScore = scores;
-    }*/
-/*
-void GroupNumber0()
-{
-    //Talk too WallSection. and set NumberOfWalls to 10
-
-    GameObject.Find("highest score").GetComponent<hittingtarget>().setScore(1);
-}
-
-}*/
 
